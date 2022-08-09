@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col">
         <form  
-        (ngSubmit)="guardar( miFormulario )" 
+        (ngSubmit)="guardar()" 
         #miFormulario="ngForm"
         autocomplete="off"
         >
@@ -23,9 +23,10 @@
                     minlength="3">
 
                     <span class="form-text text-danger"
-                    *ngIf="miFormulario.controls['producto']?.invalid &&
-                    miFormulario.controls['producto']?.touched"
-                    > Debe ser de 3 letras </span>
+                    *ngIf="nombreValido()"
+                    > 
+                    Debe ser de 3 letras 
+                    </span>
                 </div>
               </div>
 
@@ -40,7 +41,14 @@
                     class="form-control" 
                     placeholder="Precio del producto"
                     required
+                    min="1"
                     >
+
+                    <span class="form-text text-danger"
+                    *ngIf="precioValido()"
+                    > 
+                    El precio debe ser mayor a 0
+                    </span>
                 </div>
             </div>
 
@@ -53,7 +61,10 @@
                     ngModel
                     name="existencias"
                     class="form-control" 
+                    customMin
+                    [minimo]="0"
                     placeholder="Existencias del producto"
+                    required
                     >
                 </div>
             </div>
@@ -62,6 +73,7 @@
                 <div class="col">
                     <button
                     type="submit"
+                    [disabled]="miFormulario.invalid"
                     class="btn btn-primary float-end"
                     >
                     Guardar
@@ -87,5 +99,7 @@
         <span>Valid</span>
         <pre> {{ miFormulario.value | json }} </pre>
 
+        <span>CustomDirective</span>
+        <pre> {{ miFormulario.controls['existencias']?.errors | json }} </pre>
     </div>
 </div>
