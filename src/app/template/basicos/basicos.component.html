@@ -3,8 +3,8 @@
 
 <div class="row">
     <div class="col">
-        <form  
-        (ngSubmit)="guardar()" 
+        <form
+        (ngSubmit)="guardar()"
         #miFormulario="ngForm"
         autocomplete="off"
         >
@@ -12,10 +12,10 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-9">
-                    
-                    <input 
-                    type="text" 
-                    ngModel
+
+                    <input
+                    type="text"
+                    [ngModel] = "initialFormValue.producto"
                     name="producto"
                     class="form-control"
                     placeholder="Nombre del producto"
@@ -24,8 +24,8 @@
 
                     <span class="form-text text-danger"
                     *ngIf="nombreValido()"
-                    > 
-                    Debe ser de 3 letras 
+                    >
+                    Debe ser de 3 letras
                     </span>
                 </div>
               </div>
@@ -34,11 +34,11 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Precio</label>
                 <div class="col-sm-9">
-                    <input 
-                    type="number" 
-                    ngModel
+                    <input
+                    type="number"
+                    [ngModel] = "initialFormValue.precio"
                     name="precio"
-                    class="form-control" 
+                    class="form-control"
                     placeholder="Precio del producto"
                     required
                     min="1"
@@ -46,7 +46,7 @@
 
                     <span class="form-text text-danger"
                     *ngIf="precioValido()"
-                    > 
+                    >
                     El precio debe ser mayor a 0
                     </span>
                 </div>
@@ -56,11 +56,11 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Existencias</label>
                 <div class="col-sm-9">
-                    <input 
+                    <input
                     type="number"
-                    ngModel
+                    [ngModel] = "initialFormValue.existencias"
                     name="existencias"
-                    class="form-control" 
+                    class="form-control"
                     customMin
                     [minimo]="0"
                     placeholder="Existencias del producto"
@@ -89,7 +89,7 @@
     <div class="col">
         <span>Valid</span>
         <pre> {{ miFormulario.valid }} </pre>
-        
+
         <span>Pristine</span>
         <pre> {{ miFormulario.pristine }} </pre>
 
