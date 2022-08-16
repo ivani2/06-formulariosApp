@@ -67,4 +67,11 @@ export class DinamicosComponent implements OnInit {
   eliminarFavorito( cual: number ){
     this.persona.favoritos.splice(cual, 1);
   }
+
+  sendit(data: any){
+    console.log("Value",data);
+    if(data.key==="Enter"){
+      this.agregarFavorito();
+    }
+ }
 }

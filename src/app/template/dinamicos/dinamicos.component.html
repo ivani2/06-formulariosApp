@@ -41,7 +41,7 @@
                 class="form-control"
                 placeholder="Agregar favorito"
                 [(ngModel)] = "nuevoFavorito"
-                (keyup.enter)="agregarFavorito()"
+                (keyup.Enter)="agregarFavorito()"
                 name="nuevoFavorito"
                 >
 
@@ -109,3 +109,9 @@
     <pre> {{ persona | json }} </pre>
 </span>
 
+<input
+    class="form-control"
+    placeholder="Agregar favorito"
+    (keyup)="sendit($event)"
+    name="nuevoFavorito"
+    >
