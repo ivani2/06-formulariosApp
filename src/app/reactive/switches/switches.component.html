@@ -2,7 +2,7 @@
 
 <hr>
 
-<form
+<form [formGroup]="miFormulario"
 >
 <!-- Género -->
     <div class="row mb-3">
@@ -15,7 +15,7 @@
                     type="radio"
                     class="form-check-input"
                     value="F"
-                    name="radioGenero"
+                    formControlName = "genero"
                     id="radioFemenino"
                 >
                 <label for="radioFemenino" class="form-check-label">
@@ -28,6 +28,7 @@
                     type="radio"
                     class="form-check-input"
                     value="M"
+                    formControlName = "genero"
                     id="radioMasculino"
                 >
                 <label for="radioMasculino" class="form-check-label">
@@ -60,6 +61,7 @@
                     class="form-check-input"
                     type="checkbox"
                     role="switch"
+                    formControlName="notificaciones"
                     id="switchNotificaciones"
                 >
                 <label class="form-check-label" for="switchNotificaciones">Deseo recibir notificaciones</label>
@@ -77,6 +79,7 @@
                     class="form-check-input"
                     type="checkbox"
                     id="checkTerminosCondiciones"
+                    formControlName="condiciones"
                 >
                 <label class="form-check-label" for="checkTerminosCondiciones">
                   Acepto los términos y condiciones
@@ -97,7 +100,7 @@
 
 
 </form>
-<!--
+
 
 <h5>Valor del formulario:</h5>
 <pre> {{ miFormulario.value | json }} </pre>
@@ -108,7 +111,7 @@
 <h5>Valid</h5>
 <pre> {{ miFormulario.valid }} </pre>
 
-<h5>Términos</h5>
-<pre> {{ miFormulario.controls['terminosCondiciones']?.errors | json }} </pre>
+<!-- <h5>Términos</h5>
+<pre> {{ miFormulario.controls['terminosCondiciones']?.errors | json }} </pre> -->
 
-<h5>Condiciones: {{ 'algo' }} </h5> -->
+<!-- <h5>Condiciones: {{ 'algo' }} </h5> -->
