@@ -1,114 +1,100 @@
-<h2> Reactivos: <small> Dinámicos </small></h2>
+<h2>Reactivos: <small> Dinámicos </small></h2>
 <hr>
 
-
-<form
-        (ngSubmit)="guardar()"
-        autocomplete="off"
-        [formGroup]="miFormulario"
-        >
+<form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
 
     <!-- Nombre -->
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Nombre</label>
         <div class="col-sm-9">
-            <input
-            class="form-control"
-            placeholder="Nombre de la persona"
-            type="text"
-            formControlName="nombre"
-            >
-            <div
-            class="form-text text-danger"
-            *ngIf="validarCampo( 'nombre' )"
-            >
-                Este campo es obligatorio (mínimo 3 carácteres)
-            </div>
+            <input class="form-control"
+                   formControlName="nombre"
+                   placeholder="Nombre de la persona">
+            <span class="form-text text-danger"
+                    *ngIf="validarCampo('nombre')">
+                   Este campo es obligatorio
+            </span>
         </div>
     </div>
 
-    <!-- Agregar -->
+    <!-- Agregar Favorito -->
     <div class="mb-3 row">
-
         <label class="col-sm-3 col-form-label">Agregar</label>
         <div class="col-sm-9">
 
             <div class="input-group">
+                <input class="form-control"
+                       formControlName="NuevoFavorito"
+                       placeholder="Agregar favorito"
+                       [formControl]="nuevoFavorito"
+                       (keyup.enter)="agregarFavorito()">
+                <span class="form-text text-danger"
+                      *ngIf="validarNuevoFavorito()">
+                      Min. 3 letras
+               </span>
 
-                <input
-                class="form-control"
-                placeholder="Agregar favorito"
-                (keyup.Enter)="true"
-                >
-
-                <button
-                class="btn btn-outline-primary"
-                type="button"
-                (click)="true"
-                >
-                Agregar
+                <button class="btn btn-outline-primary"
+                        type="button"
+                        (click)="agregarFavorito()">
+                    Agregar
                 </button>
-
             </div>
         </div>
-
     </div>
 
 
-    <!-- Lista de favoritos -->
+    <!-- Lista de Juegos Favoritos -->
     <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Nombre</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9" formArrayName="favoritos">
 
-            <!-- <div
-            class="input-group mb-1"
-            *ngFor="let juego of persona.favoritos; let i = index;"
-            >
-                <input
-                class="form-control"
-                required
-                >
+            <div class="input-group mb-1"
+                *ngFor="let favorito of favoritosArray.controls; let i = index">
 
-                <button
-                class="btn btn-outline-danger"
-                type="button"
-                (click)="true"
-                >
-                Eliminar
-                </button>
+                <input class="form-control"
+                        [formControlName]="i">
 
-            </div> -->
+                <button class="btn btn-outline-danger"
+                        type="button"
+                        (click)="borrar(i)">
+                   Eliminar
+               </button>
+            </div>
 
         </div>
     </div>
 
-    <!-- Boton de guardar general -->
+
+
     <div class="row">
         <div class="col-sm-12">
-            <button
-            type="submit"
-            class="btn btn-primary float-end"
-            >
-            Guardar
+            <button type="button"
+                    class="btn btn-primary float-end"
+                    (click)="guardar()">
+                Guardar
             </button>
         </div>
     </div>
+
 
 </form>
 
 
 
-<input
-    class="form-control"
-    placeholder="Agregar favorito"
-    (keyup)="true"
-    name="nuevoFavorito"
-    >
+<span>Valid</span>
+<pre>{{ miFormulario.valid }}</pre>
+<br>
+
+<span>Value</span>
+<pre>{{ miFormulario.value | json }}</pre>
+<br>
 
 
-<!-- <span>
-    Persona
-    <pre> {{ persona | json }} </pre>
-</span> -->
-
-
+<span>Nuevo Favorito</span>
+<pre>{{ nuevoFavorito.value | json }}</pre>
+<pre>{{ nuevoFavorito.valid | json }}</pre>
+<br>
+<!-- <span>Agregar Juego</span>
+<pre>{{ nuevoFavorito.valid }}</pre>
+<pre>{{ nuevoFavorito.value }}</pre>
+ -->
