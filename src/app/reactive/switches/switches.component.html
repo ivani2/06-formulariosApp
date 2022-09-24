@@ -3,6 +3,7 @@
 <hr>
 
 <form [formGroup]="miFormulario"
+(ngSubmit)="guardar()"
 >
 <!-- Género -->
     <div class="row mb-3">
@@ -41,6 +42,7 @@
                     type="radio"
                     class="form-check-input"
                     value="NA"
+                    formControlName = "genero"
                     id="noDecirlo"
                 >
                 <label for="noDecirlo" class="form-check-label">
@@ -92,6 +94,7 @@
         <div class="col">
             <button
                 class="btn btn-primary float-end"
+                type="submit"
                 >
                 Guardar
             </button>
