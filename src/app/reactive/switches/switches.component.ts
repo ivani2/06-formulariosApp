@@ -32,10 +32,10 @@ export class SwitchesComponent implements OnInit {
     //   console.log( newValue );
     // } );
 
-    this.miFormulario.valueChanges.subscribe( ({condiciones, ...rest}) => {
+    this.miFormulario.valueChanges.subscribe( ({condiciones, ...restoDeArgumentos}) => {
       // console.log( form );
       // delete form.condiciones;
-      this.persona = rest;
+      this.persona = restoDeArgumentos;
     } );
 
 
